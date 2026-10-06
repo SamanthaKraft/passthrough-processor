@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 INPUT_DIR="${INPUT_DIR:-/data/input}"
@@ -10,10 +10,13 @@ echo "Output: $OUTPUT_DIR"
 
 # Find the actual content directory — step into a single wrapper folder if present
 content_dir="$INPUT_DIR"
-entries=("$INPUT_DIR"/*)
-if [ ${#entries[@]} -eq 1 ] && [ -d "${entries[0]}" ]; then
-  content_dir="${entries[0]}"
-  echo "Stepping into single subdirectory: $(basename "$content_dir")"
+entry_count=$(ls -1 "$INPUT_DIR" | wc -l)
+if [ "$entry_count" -eq 1 ]; then
+  single=$(ls -1 "$INPUT_DIR")
+  if [ -d "$INPUT_DIR/$single" ]; then
+    content_dir="$INPUT_DIR/$single"
+    echo "Stepping into single subdirectory: $single"
+  fi
 fi
 
 # Copy contents (not the folder itself) to output
