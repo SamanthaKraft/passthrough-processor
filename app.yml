@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://app.pennsieve.io/static/schemas/app-manifest.v1.json
+schemaVersion: '1.0'
+name: Passthrough Processor
+description: Copies input files directly to output without transformation. Use for pre-processed data that just needs to be registered as viewer assets.
+applicationType: processor
+categories:
+  - Visualization
+runtime:
+  computeTypes:
+    - standard
+resources:
+  cpu: 1024
+  memory: 2048

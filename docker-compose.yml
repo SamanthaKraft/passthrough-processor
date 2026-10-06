@@ -1,0 +1,9 @@
+services:
+  processor:
+    build: .
+    volumes:
+      - ./data/input:/data/input
+      - ./data/output:/data/output
+    environment:
+      - INPUT_DIR=/data/input
+      - OUTPUT_DIR=/data/output
